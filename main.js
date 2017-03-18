@@ -43,7 +43,7 @@ const writeProperties = (o, prefix) => {
 
 const headers = `
   <tr>
-    <th>Field</th>
+    <th>Property</th>
     <th>Type</th>
     <th>Min Length</th>
     <th>Max Length</th>
@@ -54,4 +54,14 @@ const headers = `
 `;
 const rows = writeProperties(file, '').join('\n');
 
-fs.writeFileSync('output.html', '<table>' + headers + rows + '</table>');
+const style = `
+<style>
+table { border: 1px solid lightgray; border-collapse: collapse; width: 100% }
+td, th { border: 1px solid lightgray; padding: 6px; }
+tr:nth-child(even) {
+    background-color: #eee;
+}
+</style>
+`;
+
+fs.writeFileSync('output.html', style + '<table>' + headers + rows + '</table>');
